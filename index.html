@@ -178,12 +178,13 @@
         }
 
         .section {
-            padding: 7rem 0;
+            padding: 5rem 0 7rem;
             position: relative;
+            scroll-margin-top: 100px;
         }
 
         .section-header {
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
             max-width: 700px;
         }
 
@@ -207,6 +208,40 @@
         .section-intro {
             color: var(--text-secondary);
             font-size: 1.1rem;
+        }
+
+        /* --- Project Category Filter Buttons --- */
+        .project-filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-secondary);
+            padding: 0.6rem 1.25rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover {
+            color: var(--text-primary);
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .filter-btn.active {
+            background: var(--accent-color);
+            color: #ffffff;
+            border-color: var(--accent-color);
+            box-shadow: 0 8px 20px -4px var(--accent-glow);
         }
 
         /* --- Hero Section --- */
@@ -375,6 +410,13 @@
         /* --- Projects Section (Collections & Stack Cards) --- */
         .collection-wrapper {
             margin-bottom: 5rem;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .collection-wrapper.hide-collection {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
         }
 
         .collection-title-wrapper {
@@ -808,16 +850,21 @@
         /* --- Scroll Reveal Animation Classes --- */
         .scroll-reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(50px) scale(0.96);
+            filter: blur(8px);
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 1s cubic-bezier(0.16, 1, 0.3, 1), 
+                        filter 1s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform, filter;
         }
 
         .scroll-reveal.revealed {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
+            filter: blur(0px);
         }
 
-        /* --- Responsive Media Queries --- */
+        /* --- Responsive Media Queries (Enhanced Edge Spacing) --- */
         @media (max-width: 992px) {
             .about-grid {
                 grid-template-columns: 1fr;
@@ -827,19 +874,20 @@
 
         @media (max-width: 768px) {
             .nav-container {
-                padding: 1rem 1.5rem;
+                padding: 1.2rem 1.75rem;
             }
             .nav-menu {
                 display: none;
             }
             .container {
-                padding: 0 1.5rem;
+                padding: 0 1.75rem;
             }
             .section {
-                padding: 5rem 0;
+                padding: 4rem 0;
+                scroll-margin-top: 80px;
             }
             .hero-section {
-                padding: 7rem 1.5rem 3rem;
+                padding: 8rem 1.75rem 3.5rem;
                 min-height: auto;
             }
             .hero-actions {
@@ -866,16 +914,36 @@
                 width: 100%;
             }
             .contact-card {
-                padding: 2.5rem 1.5rem;
+                padding: 3rem 1.75rem;
+            }
+            .project-filter-bar {
+                gap: 0.6rem;
+            }
+            .filter-btn {
+                width: 100%;
+                text-align: center;
+                padding: 0.75rem 1.25rem;
             }
         }
 
         @media (max-width: 480px) {
-            .experience-card, .skill-category-card {
-                padding: 1.5rem;
+            .container {
+                padding: 0 1.25rem;
+            }
+            .hero-section {
+                padding: 7.5rem 1.25rem 3rem;
+            }
+            .nav-container {
+                padding: 1rem 1.25rem;
+            }
+            .experience-card, .skill-category-card, .case-study-preview-card {
+                padding: 1.5rem 1.25rem;
             }
             .modal-container {
                 padding: 2rem 1.25rem;
+            }
+            .contact-card {
+                padding: 2.5rem 1.25rem;
             }
         }
     </style>
@@ -964,8 +1032,15 @@
 <h2>Featured Case Studies &amp; Projects</h2>
 <p class="section-intro">Explore selected professional works spanning broadcast media, artificial intelligence, interactive data visualization, and creative arts.</p>
 </div>
+<!-- Category Filter Navigation Bar -->
+<div class="project-filter-bar">
+<button class="filter-btn active" data-filter="all">All Projects</button>
+<button class="filter-btn" data-filter="featured">Featured Case Studies</button>
+<button class="filter-btn" data-filter="analytics">Analytics &amp; AI Systems</button>
+<button class="filter-btn" data-filter="artwork">Banner &amp; Creative Artwork</button>
+</div>
 <!-- COLLECTION 1: Featured Case Studies & Major Works -->
-<div class="collection-wrapper">
+<div class="collection-wrapper" data-category="featured">
 <div class="collection-title-wrapper">
 <div>
 <span class="collection-badge">Flagship Productions</span>
@@ -1010,7 +1085,7 @@
 </div>
 </div>
 <!-- COLLECTION 2: Data Analytics & Artificial Intelligence -->
-<div class="collection-wrapper">
+<div class="collection-wrapper" data-category="analytics">
 <div class="collection-title-wrapper">
 <div>
 <span class="collection-badge">Data &amp; Intelligence</span>
@@ -1053,7 +1128,7 @@
 </div>
 </div>
 <!-- COLLECTION 3: Visual Communication & Creative Design -->
-<div class="collection-wrapper">
+<div class="collection-wrapper" data-category="artwork">
 <div class="collection-title-wrapper">
 <div>
 <span class="collection-badge">Visual Arts</span>
@@ -1475,13 +1550,36 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('revealed');
-                    observer.unobserve(entry.target);
+                } else {
+                    entry.target.classList.remove('revealed');
                 }
             });
         }, observerOptions);
 
         document.querySelectorAll('.scroll-reveal').forEach(el => {
             observer.observe(el);
+        });
+
+        /* --- Category Filter Interactive Logic --- */
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const collections = document.querySelectorAll('.collection-wrapper');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                collections.forEach(col => {
+                    const category = col.getAttribute('data-category');
+                    if (filterValue === 'all' || filterValue === category) {
+                        col.classList.remove('hide-collection');
+                    } else {
+                        col.classList.add('hide-collection');
+                    }
+                });
+            });
         });
 
         const modalTriggers = document.querySelectorAll('.open-modal-btn');
