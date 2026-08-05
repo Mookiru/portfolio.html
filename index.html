@@ -198,7 +198,7 @@
         }
 
         .section-header h2 {
-            font-size: 2.75rem;
+            font-size: clamp(2rem, 4vw, 2.75rem);
             letter-spacing: -0.03em;
             line-height: 1.15;
             margin-bottom: 1rem;
@@ -221,6 +221,7 @@
 
         .hero-content {
             max-width: 850px;
+            width: 100%;
         }
 
         .hero-badge {
@@ -236,10 +237,11 @@
         }
 
         .hero-title {
-            font-size: clamp(3rem, 6vw, 5.5rem);
+            font-size: clamp(2.5rem, 5.5vw, 5.5rem);
             line-height: 1.05;
             letter-spacing: -0.04em;
             margin-bottom: 1.5rem;
+            word-break: break-word;
         }
 
         .serif-italic {
@@ -250,7 +252,7 @@
         }
 
         .hero-subtitle {
-            font-size: 1.25rem;
+            font-size: clamp(1rem, 2vw, 1.25rem);
             color: var(--text-secondary);
             margin-bottom: 2rem;
             max-width: 700px;
@@ -275,6 +277,7 @@
 
         .hero-actions {
             display: flex;
+            flex-wrap: wrap;
             gap: 1rem;
         }
 
@@ -290,6 +293,7 @@
             cursor: pointer;
             font-size: 0.95rem;
             border: none;
+            text-align: center;
         }
 
         .btn-primary {
@@ -399,7 +403,7 @@
 
         .case-studies-stack {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
 
@@ -485,6 +489,12 @@
             color: var(--text-secondary);
         }
 
+        .card-action-group {
+            display: flex;
+            gap: 1rem;
+            width: 100%;
+        }
+
         .view-case-study-btn {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--card-border);
@@ -497,6 +507,7 @@
             transition: var(--transition);
             text-decoration: none;
             display: inline-block;
+            text-align: center;
         }
 
         .view-case-study-btn:hover {
@@ -508,7 +519,7 @@
         /* --- Experience Section --- */
         .experience-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
 
@@ -567,7 +578,7 @@
         /* --- Skills Section --- */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
 
@@ -617,7 +628,7 @@
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 30px;
-            padding: 4rem;
+            padding: 4rem 2rem;
             text-align: center;
             max-width: 800px;
             margin: 0 auto;
@@ -626,7 +637,7 @@
         }
 
         .contact-card h2 {
-            font-size: 2.5rem;
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
             margin-bottom: 1rem;
             letter-spacing: -0.02em;
         }
@@ -643,6 +654,7 @@
         .email-btn {
             font-size: 1.1rem;
             padding: 1rem 2.5rem;
+            word-break: break-all;
         }
 
         /* --- Footer --- */
@@ -683,7 +695,7 @@
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.3s ease;
-            padding: 2rem;
+            padding: 1rem;
         }
 
         .modal-overlay.active {
@@ -699,7 +711,7 @@
             max-width: 750px;
             max-height: 85vh;
             overflow-y: auto;
-            padding: 3rem;
+            padding: 2.5rem 2rem;
             position: relative;
             transform: scale(0.95) translateY(20px);
             transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -712,13 +724,13 @@
 
         .modal-close {
             position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
+            top: 1.25rem;
+            right: 1.25rem;
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             color: var(--text-primary);
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -726,6 +738,7 @@
             font-size: 1.25rem;
             cursor: pointer;
             transition: var(--transition);
+            z-index: 10;
         }
 
         .modal-close:hover {
@@ -738,6 +751,7 @@
             margin-bottom: 2rem;
             border-bottom: 1px solid var(--card-border);
             padding-bottom: 1.5rem;
+            padding-right: 2rem;
         }
 
         .modal-category {
@@ -751,7 +765,7 @@
         }
 
         .modal-title {
-            font-size: 2rem;
+            font-size: clamp(1.4rem, 3vw, 2rem);
             letter-spacing: -0.02em;
             color: var(--text-primary);
         }
@@ -785,6 +799,12 @@
             line-height: 1.6;
         }
 
+        .modal-action-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
         /* --- Scroll Reveal Animation Classes --- */
         .scroll-reveal {
             opacity: 0;
@@ -797,29 +817,65 @@
             transform: translateY(0);
         }
 
-        /* --- Media Queries --- */
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-            }
+        /* --- Responsive Media Queries --- */
+        @media (max-width: 992px) {
             .about-grid {
                 grid-template-columns: 1fr;
                 gap: 2.5rem;
             }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 1rem 1.5rem;
+            }
+            .nav-menu {
+                display: none;
+            }
+            .container {
+                padding: 0 1.5rem;
+            }
+            .section {
+                padding: 5rem 0;
+            }
+            .hero-section {
+                padding: 7rem 1.5rem 3rem;
+                min-height: auto;
+            }
+            .hero-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+            .hero-actions .btn {
+                width: 100%;
+            }
+            .card-action-group {
+                flex-direction: column;
+            }
             .modal-body {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
             .modal-field.full-width {
                 grid-column: span 1;
             }
-            .hero-title {
-                font-size: 2.75rem;
+            .modal-action-buttons {
+                flex-direction: column;
             }
-            .section-header h2 {
-                font-size: 2.2rem;
+            .modal-action-buttons .btn {
+                width: 100%;
             }
             .contact-card {
-                padding: 2rem;
+                padding: 2.5rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .experience-card, .skill-category-card {
+                padding: 1.5rem;
+            }
+            .modal-container {
+                padding: 2rem 1.25rem;
             }
         }
     </style>
@@ -929,8 +985,8 @@
 <span>Public Broadcast</span>
 </div>
 </div>
-<div style="display: flex; gap: 1rem; width: 100%;">
-<a class="view-case-study-btn" href="https://www.youtube.com/watch?v=SFPCg8zTvLA" rel="noopener" style="flex: 1; text-align: center;" target="_blank">Watch Video ↗</a>
+<div class="card-action-group">
+<a class="view-case-study-btn" href="https://www.youtube.com/watch?v=SFPCg8zTvLA" rel="noopener" style="flex: 1;" target="_blank">Watch Video</a>
 <button class="view-case-study-btn open-modal-btn" data-target="modal-duststation" style="flex: 1;">Read Case Study</button>
 </div>
 </div>
@@ -946,8 +1002,8 @@
 <span>Lighting Design</span>
 </div>
 </div>
-<div style="display: flex; gap: 1rem; width: 100%;">
-<a class="view-case-study-btn" href="https://www.masscomm.cmu.ac.th/angkaew-video-seasonal-affective-disorder-%e0%b8%a4%e0%b8%94%e0%b8%b9%e0%b8%81%e0%b8%b2%e0%b8%a5%e0%b8%97%e0%b8%b5%e0%b9%88%e0%b8%81%e0%b8%a5%e0%b8%b7%e0%b8%99%e0%b8%81%e0%b8%b4%e0%b8%99%e0%b8%ab/" rel="noopener" style="flex: 1; text-align: center;" target="_blank">View Gallery ↗</a>
+<div class="card-action-group">
+<a class="view-case-study-btn" href="https://www.masscomm.cmu.ac.th/angkaew-video-seasonal-affective-disorder-%e0%b8%a4%e0%b8%94%e0%b8%b9%e0%b8%81%e0%b8%b2%e0%b8%a5%e0%b8%97%e0%b8%b5%e0%b9%88%e0%b8%81%e0%b8%a5%e0%b8%b7%e0%b8%99%e0%b8%81%e0%b8%b4%e0%b8%99%e0%b8%ab/" rel="noopener" style="flex: 1;" target="_blank">View Gallery</a>
 <button class="view-case-study-btn open-modal-btn" data-target="modal-sad" style="flex: 1;">Read Case Study</button>
 </div>
 </div>
@@ -974,7 +1030,7 @@
 <span>Data Modeling</span>
 </div>
 </div>
-<div style="display: flex; gap: 1rem; width: 100%;">
+<div class="card-action-group">
 <button class="view-case-study-btn open-modal-btn" data-target="modal-dashboard" style="flex: 1;">Read Case Study</button>
 </div>
 </div>
@@ -990,7 +1046,7 @@
 <span>Data Pipelines</span>
 </div>
 </div>
-<div style="display: flex; gap: 1rem; width: 100%;">
+<div class="card-action-group">
 <button class="view-case-study-btn open-modal-btn" data-target="modal-ai" style="flex: 1;">Read Case Study</button>
 </div>
 </div>
@@ -1017,8 +1073,8 @@
 <span>Brand Identity</span>
 </div>
 </div>
-<div style="display: flex; gap: 1rem; width: 100%;">
-<a class="view-case-study-btn" href="https://drive.google.com/drive/folders/155yZHw892qNTWEFQXLL6XPLLhjN9ExHf?usp=share_link" rel="noopener" style="flex: 1; text-align: center;" target="_blank">View Gallery ↗</a>
+<div class="card-action-group">
+<a class="view-case-study-btn" href="https://drive.google.com/drive/folders/155yZHw892qNTWEFQXLL6XPLLhjN9ExHf?usp=share_link" rel="noopener" style="flex: 1;" target="_blank">View Gallery</a>
 <button class="view-case-study-btn open-modal-btn" data-target="modal-banner" style="flex: 1;">Read Case Study</button>
 </div>
 </div>
@@ -1034,8 +1090,8 @@
 <span>Editing</span>
 </div>
 </div>
-<div style="display: flex; gap: 1rem; width: 100%;">
-<a class="view-case-study-btn" href="https://youtu.be/qk_CxKvAiqc?si=gJRVS0wHcBn1CJMN" rel="noopener" style="flex: 1; text-align: center;" target="_blank">Watch Video ↗</a>
+<div class="card-action-group">
+<a class="view-case-study-btn" href="https://youtu.be/qk_CxKvAiqc?si=gJRVS0wHcBn1CJMN" rel="noopener" style="flex: 1;" target="_blank">Watch Video</a>
 <button class="view-case-study-btn open-modal-btn" data-target="modal-documentary" style="flex: 1;">Read Case Study</button>
 </div>
 </div>
@@ -1170,8 +1226,9 @@
 <h5>Key Outcomes</h5>
 <p>Successfully broadcast nationwide, reaching over 1 million viewers, driving public policy discourse on environmental monitoring, and establishing a replicable framework for data-infused journalism.</p>
 </div>
-<div class="modal-field full-width" style="display: flex; gap: 1rem;">
-<a class="btn btn-primary" href="https://www.youtube.com/watch?v=SFPCg8zTvLA" rel="noopener" style="flex: 1; text-align: center;" target="_blank">Watch Video 1 ↗</a> <a class="btn btn-primary" href="https://www.youtube.com/live/OdqM6GuX298?si=7lyXWONGlYd_Xi0N" rel="noopener" style="flex:1;text-align:center;" target="_blank">Watch Video 2 ↗</a>
+<div class="modal-field full-width modal-action-buttons">
+<a class="btn btn-primary" href="https://www.youtube.com/watch?v=SFPCg8zTvLA" rel="noopener" style="flex: 1;" target="_blank">Watch Video 1</a> 
+<a class="btn btn-primary" href="https://www.youtube.com/live/OdqM6GuX298?si=7lyXWONGlYd_Xi0N" rel="noopener" style="flex: 1;" target="_blank">Watch Video 2</a>
 </div>
 </div>
 </div>
@@ -1196,8 +1253,8 @@
 <h5>Key Outcomes</h5>
 <p>Screened at independent animation showcases, praised for visceral tactile texture and empathetic depiction of mental health transitions.</p>
 </div>
-<div class="modal-field full-width" style="display: flex; gap: 1rem;">
-<a class="btn btn-primary" href="https://www.masscomm.cmu.ac.th/angkaew-video-seasonal-affective-disorder-%e0%b8%a4%e0%b8%94%e0%b8%b9%e0%b8%81%e0%b8%b2%e0%b8%a5%e0%b8%97%e0%b8%b5%e0%b9%88%e0%b8%81%e0%b8%a5%e0%b8%b7%e0%b8%99%e0%b8%81%e0%b8%b4%e0%b8%99%e0%b8%ab/" rel="noopener" style="flex: 1; text-align: center;" target="_blank">View Gallery ↗</a>
+<div class="modal-field full-width modal-action-buttons">
+<a class="btn btn-primary" href="https://www.masscomm.cmu.ac.th/angkaew-video-seasonal-affective-disorder-%e0%b8%a4%e0%b8%94%e0%b8%b9%e0%b8%81%e0%b8%b2%e0%b8%a5%e0%b8%97%e0%b8%b5%e0%b9%88%e0%b8%81%e0%b8%a5%e0%b8%b7%e0%b8%99%e0%b8%81%e0%b8%b4%e0%b8%99%e0%b8%ab/" rel="noopener" style="flex: 1;" target="_blank">View Gallery</a>
 </div>
 </div>
 </div>
@@ -1222,8 +1279,8 @@
 <h5>Key Outcomes</h5>
 <p>Reduced monthly reporting latency by 75%, empowered executive leadership with real-time performance indicators, and optimized resource allocation efficiency.</p>
 </div>
-<div class="modal-field full-width" style="display: flex; gap: 1rem;">
-<a class="btn btn-primary" href="https://drive.google.com" rel="noopener" style="flex: 1; text-align: center;" target="_blank">View Live Demo ↗</a>
+<div class="modal-field full-width modal-action-buttons">
+<a class="btn btn-primary" href="https://drive.google.com" rel="noopener" style="flex: 1;" target="_blank">View Live Demo</a>
 </div>
 </div>
 </div>
@@ -1248,8 +1305,8 @@
 <h5>Key Outcomes</h5>
 <p>Automated 80% of routine content categorization tasks, scaled personalized messaging output, and reduced operational drafting costs significantly.</p>
 </div>
-<div class="modal-field full-width" style="display: flex; gap: 1rem;">
-<a class="btn btn-primary" href="https://github.com" rel="noopener" style="flex: 1; text-align: center;" target="_blank">GitHub Repository ↗</a>
+<div class="modal-field full-width modal-action-buttons">
+<a class="btn btn-primary" href="https://github.com" rel="noopener" style="flex: 1;" target="_blank">GitHub Repository</a>
 </div>
 </div>
 </div>
@@ -1274,8 +1331,8 @@
 <h5>Key Outcomes</h5>
 <p>Elevated brand consistency across digital and print touchpoints, resulting in a 40% increase in campaign engagement and professional brand recognition.</p>
 </div>
-<div class="modal-field full-width" style="display: flex; gap: 1rem;">
-<a class="btn btn-primary" href="https://drive.google.com/drive/folders/155yZHw892qNTWEFQXLL6XPLLhjN9ExHf?usp=share_link" rel="noopener" style="flex: 1; text-align: center;" target="_blank">View Gallery ↗</a>
+<div class="modal-field full-width modal-action-buttons">
+<a class="btn btn-primary" href="https://drive.google.com/drive/folders/155yZHw892qNTWEFQXLL6XPLLhjN9ExHf?usp=share_link" rel="noopener" style="flex: 1;" target="_blank">View Gallery</a>
 </div>
 </div>
 </div>
@@ -1300,8 +1357,9 @@
 <h5>Key Outcomes</h5>
 <p>Delivered a critically acclaimed visual piece recognized for exceptional tone, color science, and evocative pacing.</p>
 </div>
-<div class="modal-field full-width" style="display: flex; gap: 1rem;">
-<a class="btn btn-primary" href="https://youtu.be/qk_CxKvAiqc?si=gJRVS0wHcBn1CJMN" rel="noopener" style="flex: 1; text-align: center;" target="_blank">Video 1 ↗</a><a class="btn btn-primary" href="https://youtu.be/XLM9G4zYdow?si=5m9KcAJPyYx4FAhN" rel="noopener" style="flex:1;text-align:center;" target="_blank">Video 2 ↗</a>
+<div class="modal-field full-width modal-action-buttons">
+<a class="btn btn-primary" href="https://youtu.be/qk_CxKvAiqc?si=gJRVS0wHcBn1CJMN" rel="noopener" style="flex: 1;" target="_blank">Video 1</a>
+<a class="btn btn-primary" href="https://youtu.be/XLM9G4zYdow?si=5m9KcAJPyYx4FAhN" rel="noopener" style="flex: 1;" target="_blank">Video 2</a>
 </div>
 </div>
 </div>
