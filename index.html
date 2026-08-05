@@ -148,6 +148,7 @@
             font-size: 0.95rem;
             font-weight: 500;
             transition: var(--transition);
+            white-space: nowrap;
         }
 
         .nav-link:hover {
@@ -164,6 +165,7 @@
             font-family: var(--font-main);
             font-size: 0.85rem;
             transition: var(--transition);
+            white-space: nowrap;
         }
 
         .theme-toggle:hover {
@@ -864,7 +866,7 @@
             filter: blur(0px);
         }
 
-        /* --- Responsive Media Queries (Enhanced Edge Spacing) --- */
+        /* --- Enhanced Responsive Rules (Mobile Margins, Header Navigation & Collection Display) --- */
         @media (max-width: 992px) {
             .about-grid {
                 grid-template-columns: 1fr;
@@ -874,20 +876,35 @@
 
         @media (max-width: 768px) {
             .nav-container {
-                padding: 1.2rem 1.75rem;
+                padding: 0.8rem 1.5rem;
+                flex-wrap: wrap;
+                gap: 0.75rem;
             }
+            .nav-brand {
+                flex-grow: 1;
+            }
+            /* บังคับให้เมนูนำทาง (About, Projects, Experience, Skills, Contact) ไม่ถูกซ่อน และปัดเลื่อนแนวนอนได้ */
             .nav-menu {
+                display: flex !important;
+                width: 100%;
+                order: 3;
+                overflow-x: auto;
+                padding-bottom: 0.4rem;
+                gap: 1.25rem;
+                -webkit-overflow-scrolling: touch;
+            }
+            .nav-menu::-webkit-scrollbar {
                 display: none;
             }
             .container {
-                padding: 0 1.75rem;
+                padding: 0 1.5rem;
             }
             .section {
-                padding: 4rem 0;
-                scroll-margin-top: 80px;
+                padding: 3.5rem 0;
+                scroll-margin-top: 110px;
             }
             .hero-section {
-                padding: 8rem 1.75rem 3.5rem;
+                padding: 9.5rem 1.5rem 3.5rem;
                 min-height: auto;
             }
             .hero-actions {
@@ -899,6 +916,22 @@
             }
             .card-action-group {
                 flex-direction: column;
+            }
+            /* รับประกันว่าหัวข้อ Collection ใน Projects จะแสดงผลอย่างสวยงาม */
+            .collection-wrapper {
+                display: block !important;
+            }
+            .collection-wrapper.hide-collection {
+                display: none !important;
+            }
+            .collection-title-wrapper {
+                display: flex !important;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.25rem;
+            }
+            .collection-title-wrapper h3 {
+                font-size: 1.4rem;
             }
             .modal-body {
                 grid-template-columns: 1fr;
@@ -914,27 +947,26 @@
                 width: 100%;
             }
             .contact-card {
-                padding: 3rem 1.75rem;
+                padding: 3rem 1.5rem;
             }
             .project-filter-bar {
                 gap: 0.6rem;
             }
             .filter-btn {
-                width: 100%;
-                text-align: center;
-                padding: 0.75rem 1.25rem;
+                padding: 0.6rem 1.1rem;
             }
         }
 
         @media (max-width: 480px) {
+            /* เว้นขอบข้าง 1.25rem (20px) ไม่ให้ติดขอบจอเกินไป */
             .container {
                 padding: 0 1.25rem;
             }
             .hero-section {
-                padding: 7.5rem 1.25rem 3rem;
+                padding: 9rem 1.25rem 3rem;
             }
             .nav-container {
-                padding: 1rem 1.25rem;
+                padding: 0.75rem 1.25rem;
             }
             .experience-card, .skill-category-card, .case-study-preview-card {
                 padding: 1.5rem 1.25rem;
